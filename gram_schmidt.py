@@ -7,7 +7,8 @@ para una matriz de tamaño n
 
 def dot(x:list[float], y:list[float])->float:
     """Producto punto entre dos vectores"""
-    ...
+    dot = [xi * yi for xi, yi in zip(x,y)]
+    return sum(dot)
 
 def transpose(M:list[list[float]])->list[tuple[float]]:
     """Devuelve traspuesta de una matriz"""
@@ -40,3 +41,10 @@ def matrix_to_str(matrix: list[list[float]])->str:
     table = [fmt.format(*row) for row in s]
     # return '\n'.join(['\t'.join([str(cell) for cell in row]) for row in matrix])
     return '\n'.join(table)
+
+def main():
+    x, y = [1, 2, 3], [4, 5, 6]
+    punto = dot(x, y)
+    print(punto)
+
+main()
