@@ -45,7 +45,8 @@ def proj(u: list[float], v: list[float]) -> list[float]:
 
 def normalize(u: list[float]) -> list[float]:
     """Normaliza un vector"""
-    ...
+    norma = norm(u)
+    return [i / norma for i in u]
 
 
 def matrix_to_str(matrix: list[list[float]]) -> str:
@@ -81,6 +82,9 @@ def main():
     print()
     proyct = proj(x, y)
     print(proyct)
+    print()
+    normal = normalize(x)
+    print(normal, norm(normal))
     print()
 
 
