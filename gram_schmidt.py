@@ -5,6 +5,8 @@ Calcula la factorización de gram-schmidt
 para una matriz de tamaño n
 """
 
+import math
+
 
 def dot(x: list[float], y: list[float]) -> float:
     """Producto punto entre dos vectores"""
@@ -30,12 +32,15 @@ def matvec(A: list[list[float]], v: list[float]) -> list[float]:
 
 def norm(x: list[float]) -> float:
     """Obtiene la norma 2 de un vector"""
-    ...
+    return math.sqrt(sum(i * i for i in x))
 
 
 def proj(u: list[float], v: list[float]) -> list[float]:
     """Calcula la proyección de u en v"""
-    ...
+    dote = dot(u, v)
+    squared_norm = dot(v, v)
+    coef = dote / squared_norm
+    return [coef * i for i in v]
 
 
 def normalize(u: list[float]) -> list[float]:
@@ -70,6 +75,12 @@ def main():
     a = [[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]]
     vecmult = matvec(a, x)
     print(vecmult)
+    print()
+    norma = norm(x)
+    print(norma)
+    print()
+    proyct = proj(x, y)
+    print(proyct)
     print()
 
 
