@@ -19,11 +19,13 @@ def transpose(M: list[list[float]]) -> list[list[float]]:
 
 def matmul(A: list[list[float]], B: list[list[float]]) -> list[list[float]]:
     """Multiplicación de dos matrices"""
-    ...
+    trans_B = transpose(B)
+    return [[dot(A[i], trans_B[j]) for i in range(len(A))] for j in range(len(B))]
 
 
 def matvec(A: list[list[float]], v: list[float]) -> list[float]:
     """Multiplicación de matriz por un vector"""
+    return [dot(row, v) for row in A]
 
 
 def norm(x: list[float]) -> float:
@@ -52,13 +54,23 @@ def matrix_to_str(matrix: list[list[float]]) -> str:
 
 
 def main():
-    x, y = [1, 2, 3], [4, 5, 6]
+    x, y = [1.0, 2.0, 3.0], [4.0, 5.0, 6.0]
     punto = dot(x, y)
     print(punto)
+    print()
     matrix = [[1.0, 2.0, 3.0], [4.0, 5.0, 6.0], [7.0, 8.0, 9.0]]
     trans = transpose(matrix)
-    print(trans)
+    print(matrix_to_str(trans))
+    print()
+    a = [[1.0, 2.0], [3.0, 4.0]]
+    b = [[5.0, 6.0], [7.0, 8.0]]
+    mult = matmul(a, b)
+    print(matrix_to_str(mult))
+    print()
+    a = [[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]]
+    vecmult = matvec(a, x)
+    print(vecmult)
+    print()
 
 
 main()
-
